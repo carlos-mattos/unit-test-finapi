@@ -4,15 +4,15 @@ import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 import { IncorrectEmailOrPasswordError } from "./IncorrectEmailOrPasswordError";
 
-let usersRepository: InMemoryUsersRepository;
+let inMemoryUsersRepository: InMemoryUsersRepository;
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let createUserUseCase: CreateUserUseCase;
 
 describe("Authentication", () => {
   beforeEach(() => {
-    usersRepository = new InMemoryUsersRepository();
-    createUserUseCase = new CreateUserUseCase(usersRepository);
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
+    inMemoryUsersRepository = new InMemoryUsersRepository();
+    createUserUseCase = new CreateUserUseCase(inMemoryUsersRepository);
+    authenticateUserUseCase = new AuthenticateUserUseCase(inMemoryUsersRepository);
   });
 
   it("should authenticate an user", async () => {
