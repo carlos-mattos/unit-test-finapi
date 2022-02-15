@@ -3,6 +3,7 @@ import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUs
 import { AuthenticateUserUseCase } from "../authenticateUser/AuthenticateUserUseCase";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
+import { ShowUserProfileError } from "./ShowUserProfileError";
 import { ShowUserProfileUseCase } from "./ShowUserProfileUseCase";
 
 let inMemoryUsersRepository: InMemoryUsersRepository;
@@ -42,5 +43,11 @@ describe("Show user profile", () => {
 
     expect(token.user).toHaveProperty("id");
     expect(profile).toBeInstanceOf(User);
+  });
+
+  it("should not retrieve profile if user id does not exists", async () => {
+    await expect(showUserProfileUseCase.execute("falseId")).rejects.toEqual(
+      new ShowUserProfileError()
+    );
   });
 });
