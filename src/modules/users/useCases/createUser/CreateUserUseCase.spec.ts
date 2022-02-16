@@ -35,7 +35,7 @@ describe("Create user", () => {
 
     const user2: ICreateUserDTO = {
       email: "luomo@dibwaw.se",
-      name: "Cordelia Ross",
+      name: "Isaiah Schmidt",
       password: "566641",
     };
 
